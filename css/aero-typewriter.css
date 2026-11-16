@@ -1,0 +1,27 @@
+/* 顶部标题打字机效果 */
+.blog-title .type-text {
+  white-space: pre-wrap;
+}
+
+.blog-title .type-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  font-weight: 300;
+  opacity: 0.9;
+  animation: aero-cursor-blink 1s steps(1) infinite;
+}
+
+.blog-title .type-cursor--idle {
+  animation: aero-cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes aero-cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
