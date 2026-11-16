@@ -1,8 +1,11 @@
 (function () {
   "use strict";
 
-  var TYPE_SPEED = 110; 
-  var START_DELAY = 350; 
+  var TYPE_SPEED = 110;
+  var START_DELAY = 350;
+  var LOOP_MS = 5000;
+  var charTimer = null;
+  var loopTimer = null;
 
   function typeInto(el) {
     var text = (el.getAttribute("data-text") || el.textContent || "").trim();
@@ -22,40 +25,44 @@
     el.appendChild(cursor);
 
     var i = 0;
-    var timer = null;
 
     function step() {
       i += 1;
       span.textContent = text.slice(0, i);
       if (i >= text.length) {
-        window.clearTimeout(timer);
+        window.clearTimeout(charTimer);
         cursor.classList.add("type-cursor--idle");
         return;
       }
-      timer = window.setTimeout(step, TYPE_SPEED);
+      charTimer = window.setTimeout(step, TYPE_SPEED);
     }
 
-    timer = window.setTimeout(step, START_DELAY);
+    charTimer = window.setTimeout(step, START_DELAY);
   }
 
-  function init() {
+  function startLoop() {
+    window.clearInterval(loopTimer);
+    window.clearTimeout(charTimer);
+
     var title = document.querySelector(".blog-title");
     if (!title) return;
-    if (title.getAttribute("data-typing") === "done") return;
-    title.setAttribute("data-typing", "done");
-    typeInto(title);
-  }
 
-  function boot() {
-    init();
+    typeInto(title);
+
+    loopTimer = window.setInterval(function () {
+      if (document.hidden) return;
+      var el = document.querySelector(".blog-title");
+      if (!el) return;
+      window.clearTimeout(charTimer);
+      typeInto(el);
+    }, LOOP_MS);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
+    document.addEventListener("DOMContentLoaded", startLoop);
   } else {
-    boot();
+    startLoop();
   }
 
-  
-  document.addEventListener("pjax:complete", boot);
+  document.addEventListener("pjax:complete", startLoop);
 })();
