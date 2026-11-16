@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --black-main: #000000;
   --white-main: #f2f6f8;
@@ -390,8 +391,29 @@ nav {
   left: 5px;
   border-radius: 50%;
   border: 1px solid var(--white-main);
+  animation: aero-avatar-spin 18s linear infinite;
+  will-change: transform;
 }
 
+/* 鼠标悬停时加速旋转 */
+.avatar-bg:hover .profile-img {
+  animation-duration: 4s;
+}
+
+@keyframes aero-avatar-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* 系统开启「减少动效」时不旋转 */
+@media (prefers-reduced-motion: reduce) {
+  .profile-img {
+    animation: none;
+  }
+}
 .profile-link {
   position: relative;
   display: inline-flex;
