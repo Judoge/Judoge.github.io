@@ -1,0 +1,16 @@
+/* 动态壁纸背景层 */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 视频未就绪时（或加载失败）用海报兜底 */
+body {
+  background-color: #cfe3ef;
+}

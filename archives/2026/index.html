@@ -19,6 +19,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
     <link rel="stylesheet" href="/css/aero-theme-switcher.css">
+    <link rel="stylesheet" href="/css/aero-bg-video.css">
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
@@ -176,6 +177,30 @@
         <span class="theme-dot" data-index="3" style="background:#3c57b1"></span>
     </div>
     <script src="/js/aero-theme-switcher.js"></script>
+    <script>
+        /* 动态壁纸：仅在宽屏且未开启「减少动效」时加载视频，节省移动端流量 */
+        (function () {
+            try {
+                if (window.matchMedia('(max-width: 768px)').matches) return;
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                var v = document.createElement('video');
+                v.className = 'bg-video';
+                v.autoplay = true;
+                v.muted = true;
+                v.loop = true;
+                v.playsInline = true;
+                v.setAttribute('playsinline', '');
+                v.setAttribute('muted', '');
+                v.setAttribute('aria-hidden', 'true');
+                v.poster = '/images/aero/bg-poster.jpg';
+                var s = document.createElement('source');
+                s.src = '/images/aero/bg.mp4';
+                s.type = 'video/mp4';
+                v.appendChild(s);
+                document.body.insertBefore(v, document.body.firstChild);
+            } catch (e) { /* ignore */ }
+        })();
+    </script>
 </body>
 
 </html>
