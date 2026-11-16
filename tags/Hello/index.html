@@ -169,13 +169,9 @@
     <script src="/js/aero-theme-switcher.js"></script>
     <script src="/js/aero-typewriter.js"></script>
     <script>
-        /* 动态壁纸：任何设备、任何设置下都加载并播放 */
+        /* 动态壁纸：任何设备、任何设置下都加载并播放（480p / 15fps 轻量版） */
         (function () {
             try {
-                var smallScreen = window.matchMedia('(max-width: 768px)').matches;
-                var weakCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
-                var src = (smallScreen || weakCpu) ? '/images/aero/bg-mobile.mp4' : '/images/aero/bg.mp4';
-
                 var v = document.createElement('video');
                 v.className = 'bg-video';
                 v.autoplay = true;
@@ -189,7 +185,7 @@
                 v.setAttribute('aria-hidden', 'true');
                 v.poster = '/images/aero/bg-poster.jpg';
                 var s = document.createElement('source');
-                s.src = src;
+                s.src = '/images/aero/bg.mp4';
                 s.type = 'video/mp4';
                 v.appendChild(s);
                 document.body.insertBefore(v, document.body.firstChild);
