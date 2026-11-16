@@ -182,6 +182,10 @@
         /* 动态壁纸：任何设备、任何设置下都加载并播放 */
         (function () {
             try {
+                var smallScreen = window.matchMedia('(max-width: 768px)').matches;
+                var weakCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+                var src = (smallScreen || weakCpu) ? '/images/aero/bg-mobile.mp4' : '/images/aero/bg.mp4';
+
                 var v = document.createElement('video');
                 v.className = 'bg-video';
                 v.autoplay = true;
@@ -195,7 +199,7 @@
                 v.setAttribute('aria-hidden', 'true');
                 v.poster = '/images/aero/bg-poster.jpg';
                 var s = document.createElement('source');
-                s.src = '/images/aero/bg.mp4';
+                s.src = src;
                 s.type = 'video/mp4';
                 v.appendChild(s);
                 document.body.insertBefore(v, document.body.firstChild);
@@ -213,9 +217,13 @@
                     document.addEventListener(evt, tryPlay, { passive: true });
                 });
 
-                /* 页面从后台切回来时确保还在播放 */
+                /* 页面切到后台时暂停解码，切回来再继续，避免长期占用 GPU/CPU */
                 document.addEventListener('visibilitychange', function () {
-                    if (!document.hidden && v.paused) tryPlay();
+                    if (document.hidden) {
+                        v.pause();
+                    } else if (v.paused) {
+                        tryPlay();
+                    }
                 });
             } catch (e) { /* ignore */ }
         })();
