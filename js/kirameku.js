@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  /* ---- 导航：高亮当前页面 ---- */
+  
   function markActiveNav() {
     var path = location.pathname.replace(/\/+$/, "") || "/";
     var links = document.querySelectorAll("#page-header #nav .menus_items a.site-page");
@@ -14,7 +14,7 @@
     });
   }
 
-  /* ---- 时间轴：滚动渐入 ---- */
+  
   function initTimeline() {
     var items = document.querySelectorAll("#jl-timeline .jl-item");
     if (!items.length) return;

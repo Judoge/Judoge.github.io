@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  var TYPE_SPEED = 110; /* 每个字符的间隔（毫秒） */
-  var START_DELAY = 350; /* 开始打字前的停顿 */
+  var TYPE_SPEED = 110; 
+  var START_DELAY = 350; 
 
   function typeInto(el) {
     var text = (el.getAttribute("data-text") || el.textContent || "").trim();
@@ -56,6 +56,6 @@
     boot();
   }
 
-  /* pjax 切换页面会替换顶部标题，需要重新播放 */
+  
   document.addEventListener("pjax:complete", boot);
 })();

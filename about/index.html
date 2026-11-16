@@ -26,7 +26,6 @@
 
 <body>
     <div class="container">
-        <!-- header -->
         <div class="header" id="pjax-header">
     <header class="card">
         <p class="blog-title">
@@ -104,35 +103,13 @@
     </span>
 
     <div class="post-content">
-        <p>你好，我是 <strong>Judoge</strong> 👋</p>
-<p>这里是「Judoge’s Blog」——一个用来记录学习、折腾与生活的地方。</p>
-<h2 id="关于我">关于我</h2>
-<ul>
-<li>🐱 一个喜欢折腾电脑、偶尔写点代码、想把生活记录下来的普通人</li>
-<li>🛠 正在折腾：Hexo 博客、一些前端小项目、学习笔记整理</li>
-<li>🌱 座右铭：慢慢来，比较快。</li>
-</ul>
-<h2 id="这里会有什么">这里会有什么</h2>
-<ul>
-<li>学习笔记：踩过的坑、弄懂的知识点</li>
-<li>生活碎片：一些不想发在社交平台的碎碎念</li>
-<li>折腾记录：换主题、写脚本、各种瞎折腾</li>
-</ul>
-<h2 id="联系我">联系我</h2>
-<ul>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/Judoge">https://github.com/Judoge</a></li>
-<li>Email：judoge@example.com</li>
-</ul>
-<blockquote>
-<p>欢迎常来逛逛 🌿</p>
-</blockquote>
+        <p>是个地球入  让我想想写点啥 - w -</p>
 
     </div>
 </div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
-            <!-- footer -->
             <footer class="card">
     <div class="copyright">
         <p>Copyright © 2026
@@ -169,7 +146,6 @@
     <script src="/js/aero-theme-switcher.js"></script>
     <script src="/js/aero-typewriter.js"></script>
     <script>
-        /* 动态壁纸：任何设备、任何设置下都加载并播放（480p / 15fps 轻量版） */
         (function () {
             try {
                 var v = document.createElement('video');
@@ -190,11 +166,10 @@
                 v.appendChild(s);
                 document.body.insertBefore(v, document.body.firstChild);
 
-                /* 兜底：部分浏览器（iOS 低电量模式等）会拦截自动播放，交互后重试 */
                 var tryPlay = function () {
                     var p = v.play();
                     if (p && p.catch) {
-                        p.catch(function () { /* 忽略，等下一次交互 */ });
+                        p.catch(function () {});
                     }
                 };
                 v.addEventListener('loadeddata', tryPlay);
@@ -203,7 +178,6 @@
                     document.addEventListener(evt, tryPlay, { passive: true });
                 });
 
-                /* 页面切到后台时暂停解码，切回来再继续，避免长期占用 GPU/CPU */
                 document.addEventListener('visibilitychange', function () {
                     if (document.hidden) {
                         v.pause();
@@ -211,7 +185,7 @@
                         tryPlay();
                     }
                 });
-            } catch (e) { /* ignore */ }
+            } catch (e) {}
         })();
     </script>
 </body>

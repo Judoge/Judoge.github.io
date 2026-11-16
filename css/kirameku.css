@@ -1,10 +1,5 @@
-/* ==========================================================
-   Kirameku 风格移植 —— 毛玻璃设计系统
-   参考：https://github.com/Xinghongia/Kirameku (MIT)
-   适配：Hexo + Butterfly 5.7
-   ========================================================== */
 
-/* ---------- 设计变量 ---------- */
+
 :root {
   --kira-accent: #6366f1;
   --kira-accent-soft: rgba(99, 102, 241, 0.12);
@@ -34,7 +29,6 @@
   --kira-text-soft: rgba(255, 255, 255, 0.72);
 }
 
-/* ---------- 基础 ---------- */
 html {
   overflow-y: scroll;
 }
@@ -62,7 +56,6 @@ html {
   scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
 }
 
-/* 背景透明，露出随机壁纸 */
 #web_bg,
 #body-wrap,
 #page-header {
@@ -73,7 +66,6 @@ html {
   filter: brightness(0.35) saturate(0.9);
 }
 
-/* 内容区 */
 #content-inner {
   background: transparent !important;
   padding: 20px 40px !important;
@@ -96,9 +88,6 @@ html {
   }
 }
 
-/* ==========================================================
-   悬浮毛玻璃导航
-   ========================================================== */
 #page-header #nav {
   left: 12px;
   right: 12px;
@@ -159,9 +148,6 @@ html {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* ==========================================================
-   首页 Hero
-   ========================================================== */
 #page-header #site-title {
   background: linear-gradient(
     120deg,
@@ -216,9 +202,6 @@ html {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* ==========================================================
-   卡片
-   ========================================================== */
 #content-inner .recent-post-item,
 #content-inner .aside-content .card-widget,
 #post #article-container {
@@ -241,7 +224,6 @@ html {
   padding: 26px !important;
 }
 
-/* 文章页元素配色 */
 #article-container a {
   color: var(--kira-accent);
 }
@@ -266,7 +248,6 @@ html {
   color: var(--kira-text-soft);
 }
 
-/* 分类 / 标签胶囊 */
 .article-meta-wrap .article-meta__categories,
 .post-meta__tag-list .post-meta__tags {
   background: var(--kira-accent-soft);
@@ -274,7 +255,6 @@ html {
   padding: 2px 10px;
 }
 
-/* 分页 */
 #pagination .pagination .page-number {
   background: var(--kira-glass-bg-strong);
   border: 1px solid var(--kira-glass-border);
@@ -295,7 +275,6 @@ html {
   color: #fff !important;
 }
 
-/* 右下角按钮 */
 #rightside button {
   background: var(--kira-glass-bg-strong);
   border: 1px solid var(--kira-glass-border);
@@ -311,7 +290,6 @@ html {
   color: #fff !important;
 }
 
-/* 页脚 */
 #footer,
 #footer-wrap {
   background: transparent !important;
@@ -325,9 +303,6 @@ html {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* ==========================================================
-   时间轴页面
-   ========================================================== */
 #jl-timeline {
   position: relative;
 }
@@ -566,9 +541,6 @@ html {
   }
 }
 
-/* ==========================================================
-   关于页面
-   ========================================================== */
 #jl-about {
   max-width: 900px;
   margin: 0 auto;
@@ -677,13 +649,11 @@ html {
   padding-left: 18px;
 }
 
-/* 自定义页面自带 hero 标题，隐藏主题自动标题 */
 .page-title:has(+ #article-container #jl-timeline),
 .page-title:has(+ #article-container #jl-about) {
   display: none;
 }
 
-/* ---------- 移动端微调 ---------- */
 @media screen and (max-width: 768px) {
   #page-header #nav {
     left: 8px;

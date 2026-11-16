@@ -1,4 +1,4 @@
-/* 动态壁纸背景层（全设备、全屏铺满） */
+
 .bg-video {
   position: fixed;
   top: 0;
@@ -12,7 +12,6 @@
   background: #273fba;
 }
 
-/* 视频未就绪时（或加载失败）用海报兜底 */
 body {
   background-color: #273fba;
 }
