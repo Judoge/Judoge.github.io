@@ -381,6 +381,15 @@ nav {
   height: 120px;
   border-radius: 50%;
   box-shadow: 0 0 0 1px var(--white-main), 0 0 0 1.5px var(--black-main), 3px 3px 10px rgba(from var(--black-main) r g b/0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* 鼠标悬停时整体放大 */
+.avatar-bg:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 1px var(--white-main), 0 0 0 1.5px var(--black-main), 0 6px 20px rgba(from var(--black-main) r g b/0.55);
 }
 
 .profile-img {
@@ -393,11 +402,6 @@ nav {
   border: 1px solid var(--white-main);
   animation: aero-avatar-spin 18s linear infinite;
   will-change: transform;
-}
-
-/* 鼠标悬停时加速旋转 */
-.avatar-bg:hover .profile-img {
-  animation-duration: 4s;
 }
 
 @keyframes aero-avatar-spin {
