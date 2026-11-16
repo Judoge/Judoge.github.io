@@ -1,6 +1,7 @@
 :root {
   --black-main: #000000;
   --white-main: #f2f6f8;
+  /* You can customize the theme color here */
   --primary-color: #3c7fb1;
   --highlight-color: #aaddfa;
   --secondary-color: #d8e1e7;
@@ -9,6 +10,7 @@
   var(--secondary-color) 50%,
   color-mix(in srgb, var(--secondary-color), black 10%) 51%,
   var(--secondary-color) 100%);
+  /* You can customize the background image here */
   --bg-image: url(/images/aero/bg-poster.jpg);
 }
 
@@ -147,6 +149,7 @@ body {
 
 .current::before {
   box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.4), 0 0 0 0.5px var(--black-main);
+  /* 3px 3px 10px rgba(from var(--black-main) r g b / 0.6); */
 }
 
 .page-nav .space {
@@ -189,6 +192,7 @@ header {
 .blog-title {
   position: relative;
   text-align: right;
+  /* font-style: italic; */
   font-size: 20px;
   text-shadow: 0 0 10px var(--white-main), 0 0 10px var(--white-main), 0 0 10px var(--white-main), 0 0 10px var(--white-main), 0 0 10px var(--white-main), 0 0 10px var(--white-main);
 }
