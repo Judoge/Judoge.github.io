@@ -168,18 +168,18 @@
     </div>
     <script src="/js/aero-theme-switcher.js"></script>
     <script>
-        /* 动态壁纸：仅在宽屏且未开启「减少动效」时加载视频，节省移动端流量 */
+        /* 动态壁纸：任何设备、任何设置下都加载并播放 */
         (function () {
             try {
-                if (window.matchMedia('(max-width: 768px)').matches) return;
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
                 var v = document.createElement('video');
                 v.className = 'bg-video';
                 v.autoplay = true;
                 v.muted = true;
                 v.loop = true;
                 v.playsInline = true;
+                v.preload = 'auto';
                 v.setAttribute('playsinline', '');
+                v.setAttribute('webkit-playsinline', '');
                 v.setAttribute('muted', '');
                 v.setAttribute('aria-hidden', 'true');
                 v.poster = '/images/aero/bg-poster.jpg';
@@ -188,6 +188,24 @@
                 s.type = 'video/mp4';
                 v.appendChild(s);
                 document.body.insertBefore(v, document.body.firstChild);
+
+                /* 兜底：部分浏览器（iOS 低电量模式等）会拦截自动播放，交互后重试 */
+                var tryPlay = function () {
+                    var p = v.play();
+                    if (p && p.catch) {
+                        p.catch(function () { /* 忽略，等下一次交互 */ });
+                    }
+                };
+                v.addEventListener('loadeddata', tryPlay);
+                v.addEventListener('canplay', tryPlay);
+                ['touchstart', 'click', 'scroll', 'keydown'].forEach(function (evt) {
+                    document.addEventListener(evt, tryPlay, { passive: true });
+                });
+
+                /* 页面从后台切回来时确保还在播放 */
+                document.addEventListener('visibilitychange', function () {
+                    if (!document.hidden && v.paused) tryPlay();
+                });
             } catch (e) { /* ignore */ }
         })();
     </script>
